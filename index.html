@@ -1,0 +1,488 @@
+<title>MC Tuấn Minh</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="MC Tuấn Minh – dẫn chương trình tiệc cưới, lễ ăn hỏi, vu quy, thành hôn và lễ thề nguyện.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Be+Vietnam+Pro:wght@400;500;600&family=Dancing+Script:wght@500;600&display=swap&subset=vietnamese">
+<style>
+/* Layout: mobile-first single column (capped at --col on wide screens); full-bleed hero photo with centered overlay copy; galleries are swipeable rails. */
+:root {
+  --bg: #faf5f3;
+  --surface: #f0e4e0;
+  --ink: #3a3230;
+  --muted: #76655c;
+  --accent: #9e7043;
+  --accent-ink: #ffffff;
+  --band: #2e2421;
+  --band-ink: #f3e9e2;
+  --band-muted: #c9b6a8;
+  --band-card: rgba(255, 255, 255, 0.07);
+  --line: rgba(158, 112, 67, 0.28);
+  --shadow: 0 10px 30px rgba(58, 50, 48, 0.12);
+
+  --f-display: "Playfair Display", "Times New Roman", Georgia, serif;
+  --f-body: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+  --f-script: "Dancing Script", "Brush Script MT", cursive;
+
+  --wrap: 1080px;
+  --col: 480px;
+  --side: #ddcfc7;
+  --gut-l: max(16px, env(safe-area-inset-left, 0px));
+  --gut-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1615; --surface: #271f1d; --ink: #f0e6df; --muted: #b9a79a;
+    --accent: #cf9f68; --accent-ink: #1b1615;
+    --band: #120d0c; --band-ink: #f3e9e2; --band-muted: #b9a79a; --band-card: rgba(255,255,255,0.05);
+    --line: rgba(207, 159, 104, 0.3); --shadow: 0 10px 30px rgba(0,0,0,0.4); --side: #0e0a09;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1615; --surface: #271f1d; --ink: #f0e6df; --muted: #b9a79a;
+  --accent: #cf9f68; --accent-ink: #1b1615;
+  --band: #120d0c; --band-ink: #f3e9e2; --band-muted: #b9a79a; --band-card: rgba(255,255,255,0.05);
+  --line: rgba(207, 159, 104, 0.3); --shadow: 0 10px 30px rgba(0,0,0,0.4); --side: #0e0a09;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg); color: var(--ink);
+  font: 400 16px/1.7 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 30; background: var(--bg);
+}
+img, video { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gut-l); padding-right: var(--gut-r); }
+section { padding-block: 72px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; line-height: 1.2; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.9rem, 6vw, 2.75rem); }
+h3 { font-size: 1.5rem; }
+p { margin: 0; }
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.eyebrow::after { content: ""; height: 1px; flex: 1; max-width: 120px; background: var(--line); }
+.script { font-family: var(--f-script); font-weight: 500; color: var(--accent); font-size: 1.6rem; line-height: 1.3; }
+.lead { color: var(--muted); max-width: 62ch; }
+
+/* Header */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--f-display); font-weight: 700; letter-spacing: 0.06em; text-decoration: none; font-size: 1.05rem; }
+.nav { display: flex; gap: 22px; font-size: 0.9rem; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--accent); }
+/* Mobile-first column: the nav never fits, the CTA button stays. */
+.nav { display: none; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 26px; border-radius: 999px;
+  background: var(--accent); color: var(--accent-ink);
+  font: 600 0.95rem/1 var(--f-body); letter-spacing: 0.04em; text-decoration: none;
+  border: 1px solid var(--accent); cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn-sm { min-height: 38px; padding: 8px 18px; font-size: 0.85rem; }
+
+/* Hero */
+.hero { padding-block: 0; }
+.hero-stage {
+  position: relative; display: grid; align-items: end; justify-items: center; overflow: hidden;
+  height: calc(100svh - 62px - env(safe-area-inset-top, 0px)); min-height: 560px; max-height: 1000px;
+  background: #1f1816;
+}
+.hero-stage > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 0%;
+}
+.hero-stage::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(20, 14, 12, 0) 40%, rgba(20, 14, 12, 0.55) 66%, rgba(20, 14, 12, 0.88) 100%);
+}
+.hero-copy {
+  position: relative; z-index: 1; display: grid; gap: 12px; justify-items: center; text-align: center;
+  max-width: 34rem; padding: 0 var(--gut-r) calc(96px + env(safe-area-inset-bottom, 0px)) var(--gut-l);
+  color: #fff;
+}
+.hero-copy .kicker { font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 600; color: #ead2b4; }
+.hero-copy h1 { font-size: clamp(2.2rem, 9vw, 3.4rem); letter-spacing: 0.02em; line-height: 1.05; }
+.hero-copy h1 em { display: block; font-family: var(--f-script); font-style: normal; font-weight: 600; color: #ead2b4; font-size: 0.6em; margin-top: 4px; }
+.hero-copy p { color: rgba(255, 255, 255, 0.86); max-width: 40ch; font-size: 0.95rem; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
+.hero-actions .btn.ghost { color: #fff; border-color: rgba(255, 255, 255, 0.7); }
+.hero-actions .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
+.hero-copy { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+.hero-actions { gap: 10px; flex-wrap: nowrap; }
+.hero-actions .btn { padding-inline: 18px; }
+/* Short screens: drop the blurb so the overlay stays below the face. */
+@media (max-height: 760px) { .hero-copy p { display: none; } }
+/* About */
+.about-grid { display: grid; gap: 32px; }
+.about-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; }
+.about-copy { display: grid; gap: 18px; align-content: center; min-width: 0; }
+.about-copy blockquote { margin: 0; font-family: var(--f-display); font-style: italic; font-size: 1.15rem; color: var(--ink); border-left: 2px solid var(--accent); padding-left: 16px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; border-top: 1px solid var(--line); padding-top: 22px; }
+.stat b { display: block; font-family: var(--f-display); font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--accent); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 0.85rem; color: var(--muted); line-height: 1.4; display: block; margin-top: 4px; }
+
+/* Services */
+.services { background: var(--surface); }
+.svc-head { display: grid; gap: 10px; margin-bottom: 48px; }
+.svc-list { display: grid; gap: 64px; }
+.svc { display: grid; gap: 18px; min-width: 0; }
+.svc-text { display: grid; gap: 10px; max-width: 62ch; }
+.svc-text h3 small { display: block; font-family: var(--f-body); font-weight: 500; font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
+.svc-text p { color: var(--muted); }
+.svc-meta { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+
+.rail {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  margin-left: calc(-1 * var(--gut-l)); margin-right: calc(-1 * var(--gut-r));
+  padding: 4px var(--gut-r) 14px var(--gut-l); scroll-padding-left: var(--gut-l);
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+.rail > * {
+  flex: 0 0 72%; max-width: 300px; scroll-snap-align: start;
+  aspect-ratio: 3 / 4; border-radius: 10px; overflow: hidden; background: var(--bg);
+  position: relative;
+}
+.rail img, .rail video { width: 100%; height: 100%; object-fit: cover; }
+.rail button.shot { all: unset; cursor: zoom-in; display: block; width: 100%; height: 100%; }
+.rail button.shot:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+.tag {
+  position: absolute; left: 10px; top: 10px; z-index: 1;
+  background: rgba(20, 15, 14, 0.62); color: #fff; font-size: 0.72rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 999px; letter-spacing: 0.04em; pointer-events: none;
+}
+
+/* Why */
+.why { background: var(--band); color: var(--band-ink); }
+.why .eyebrow { color: var(--accent); }
+.why .lead { color: var(--band-muted); }
+.why-head { display: grid; gap: 10px; margin-bottom: 40px; }
+.why-grid { display: grid; gap: 14px; }
+.why-card { background: var(--band-card); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.why-card h3 { font-size: 1.3rem; color: var(--band-ink); }
+.why-card p { color: var(--band-muted); }
+.why-card.feature { gap: 16px; }
+.why-card ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.why-card li { position: relative; padding-left: 22px; color: var(--band-ink); }
+.why-card li::before { content: "?"; position: absolute; left: 0; top: 0; font-family: var(--f-display); color: var(--accent); font-weight: 700; }
+.why-video { border-radius: 10px; overflow: hidden; max-width: 320px; aspect-ratio: 9 / 16; background: #000; }
+.why-video video { width: 100%; height: 100%; object-fit: cover; }
+.why-video figcaption { display: none; }
+
+/* Feedback */
+.fb-head { display: grid; gap: 10px; margin-bottom: 32px; }
+.reviews > * { aspect-ratio: auto; height: 420px; flex-basis: auto; max-width: none; background: var(--surface); border: 1px solid var(--line); }
+.reviews img { width: auto; height: 100%; object-fit: contain; }
+.fb-note { font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+
+/* Contact */
+.contact { padding-bottom: 40px; }
+.contact-card { display: grid; border-radius: 16px; overflow: hidden; background: var(--surface); }
+.contact-card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.contact-body { padding: 28px 22px 32px; display: grid; gap: 16px; justify-items: start; }
+.thanks { font-family: var(--f-display); font-size: clamp(2.6rem, 11vw, 4rem); color: var(--accent); letter-spacing: 0.08em; line-height: 1; }
+.phone { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.phone output { font-family: var(--f-display); font-size: 1.6rem; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; user-select: all; }
+
+footer { padding-block: 28px 110px; text-align: center; font-size: 0.82rem; color: var(--muted); }
+
+/* Floating Zalo */
+.float {
+  position: fixed; z-index: 25;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: var(--accent-ink); text-decoration: none;
+  font-weight: 600; font-size: 0.92rem; padding: 12px 20px 12px 14px; border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+.float svg { width: 22px; height: 22px; }
+.float::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--accent);
+  animation: ping 2.4s ease-out infinite;
+}
+@keyframes ping { from { transform: scale(1); opacity: .7; } to { transform: scale(1.35); opacity: 0; } }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 40; background: rgba(15, 11, 10, 0.92); display: grid; place-items: center; padding: 24px; }
+.lb[hidden] { display: none; }
+.lb img { max-height: 88vh; width: auto; border-radius: 8px; }
+.lb button { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px)); background: rgba(255,255,255,0.12); color: #fff; border: 0; width: 44px; height: 44px; border-radius: 50%; font-size: 1.4rem; cursor: pointer; }
+
+/* Wide screens: the whole page stays a phone-width column centred on a tinted backdrop. */
+@media (min-width: 720px) {
+  html { background: var(--side); }
+  body { max-width: var(--col); margin-inline: auto; box-shadow: 0 0 48px rgba(58, 50, 48, 0.12); min-height: 100vh; }
+  .hero-stage > img { object-position: 50% 35%; }
+  /* vw-based sizes would follow the viewport, not the column: pin them to their ~480px values. */
+  h2 { font-size: 1.9rem; }
+  .hero-copy h1 { font-size: 2.7rem; }
+  .stat b { font-size: 2.1rem; }
+  .thanks { font-size: 3.3rem; }
+  .float { right: calc(50vw - var(--col) / 2 + 16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .float::before { animation: none; }
+  .hero-copy .wl, .hero-copy .wr, .hero-copy .rise { animation: none; }
+  .btn { transition: none; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">MC TUẤN MINH</a>
+    <nav class="nav" aria-label="Mục lục">
+      <a href="#gioi-thieu">Giới thiệu</a>
+      <a href="#dich-vu">Dịch vụ</a>
+      <a href="#vi-sao">Vì sao chọn mình</a>
+      <a href="#phan-hoi">Phản hồi</a>
+    </nav>
+    <a class="btn btn-sm" href="https://zalo.me/0973110493" target="_blank" rel="noopener">Đặt lịch</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-stage">
+      <img src="img/hero.jpg" alt="MC Tuấn Minh trong bộ vest trắng tại một lễ cưới ngoài trời" fetchpriority="high">
+      <div class="hero-copy">
+        <span class="kicker"><span class="wl">Wedding host</span> · <span class="wr">Storyteller</span></span>
+        <h1><span class="wl">Tuấn</span> <span class="wr">Minh</span> <em><span class="wl">MC</span> <span class="wr">tiệc cưới</span></em></h1>
+        <p class="rise">Lời dẫn nhẹ nhàng, tình cảm và viết riêng cho câu chuyện của hai bạn. Không văn thơ sáo rỗng.</p>
+        <div class="hero-actions rise">
+          <a class="btn" href="https://zalo.me/0973110493" target="_blank" rel="noopener">Nhắn Zalo hỏi lịch</a>
+          <a class="btn ghost" href="#dich-vu">Xem dịch vụ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gioi-thieu">
+    <div class="wrap about-grid">
+      <div class="about-photo">
+        <img src="img/about.jpg" alt="Tuấn Minh cầm micro trên sân khấu cưới hoa trắng xanh" loading="lazy">
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow">Về mình</div>
+        <h2>Mỗi đám cưới là một câu chuyện tình yêu độc nhất</h2>
+        <p class="lead">Mình là Tuấn Minh, MC tiệc cưới với hơn 3 năm kinh nghiệm dẫn sự kiện. Trên sân khấu, mình vừa là người điều phối chương trình, vừa là người kể chuyện, kết nối cảm xúc giữa cô dâu chú rể và khách mời.</p>
+        <p class="lead">Mình chuẩn bị kỹ từng kịch bản, cá nhân hóa lời dẫn theo câu chuyện của mỗi cặp đôi, để lễ cưới vừa trang trọng vừa có ý nghĩa.</p>
+        <blockquote>Nếu bạn cần một giọng dẫn nhẹ nhàng, tình cảm và không sến, hãy cho mình một cơ hội. Hy vọng sớm gặp bạn trong ngày cưới của bạn hoặc người thân.</blockquote>
+        <div class="stats">
+          <div class="stat"><b>200+</b><span>tiệc cưới đã dẫn</span></div>
+          <div class="stat"><b>3+</b><span>năm kinh nghiệm</span></div>
+          <div class="stat"><b>100%</b><span>khách hài lòng</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="dich-vu">
+    <div class="wrap">
+      <div class="svc-head">
+        <div class="eyebrow">Dịch vụ</div>
+        <h2>Dẫn chương trình cho từng nghi lễ</h2>
+        <p class="script">cho mọi khoảnh khắc trọng đại</p>
+        <p class="lead">Từ lễ ăn hỏi truyền thống ở tư gia đến tiệc cưới tại sảnh lớn, mỗi nghi lễ có nhịp riêng. Mình chuẩn bị lời dẫn phù hợp với từng nghi lễ.</p>
+      </div>
+
+      <div class="svc-list">
+        <article class="svc">
+          <div class="svc-text">
+            <span class="svc-meta">Sảnh tiệc · Trọn chương trình</span>
+            <h3>MC nhà hàng, khách sạn</h3>
+            <p>Dẫn toàn bộ tiệc cưới tại sảnh, từ đón khách, nghi lễ trên sân khấu đến phần giao lưu cuối tiệc. Mình phối hợp với nhà hàng và đội âm thanh ánh sáng để chương trình đúng giờ và liền mạch.</p>
+          </div>
+          <div class="rail" tabindex="0" aria-label="Ảnh và video tiệc cưới tại nhà hàng">
+            <div><span class="tag">Video</span><video src="video/nha-hang.mp4#t=0.1" controls playsinline preload="metadata" aria-label="Video MC Tuấn Minh dẫn tiệc tại nhà hàng"></video></div>
+            <div><button class="shot" type="button"><img src="img/nh-1.jpg" alt="MC đứng trên sân khấu có chữ T, nền hoa hồng phấn" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/nh-3.jpg" alt="MC cầm micro trước bảng tên cô dâu chú rể chữ N" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/nh-2.jpg" alt="Sảnh tiệc với trần cong và lối đi hoa" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/nh-4.jpg" alt="Sân khấu tiệc cưới với pháo sáng lạnh" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/nh-5.jpg" alt="MC dẫn tiệc trước màn hình LED chiếu ảnh cưới" loading="lazy"></button></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="svc-text">
+            <span class="svc-meta">Tư gia · Lễ dạm ngõ, ăn hỏi</span>
+            <h3>MC lễ ăn hỏi</h3>
+            <p>Dẫn lễ ăn hỏi truyền thống với sự tinh tế và hiểu biết về phong tục. Mình kết nối hai gia đình, giữ không khí trang trọng mà vẫn gần gũi, ấm áp.</p>
+          </div>
+          <div class="rail" tabindex="0" aria-label="Ảnh lễ ăn hỏi">
+            <div><button class="shot" type="button"><img src="img/ah-2.jpg" alt="MC mặc vest kem đứng trước phông chữ Hỷ đỏ" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/ah-1.jpg" alt="MC chụp ảnh bên mâm quả lễ ăn hỏi" loading="lazy"></button></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="svc-text">
+            <span class="svc-meta">Tư gia · Vu quy, thành hôn</span>
+            <h3>MC lễ tư gia</h3>
+            <p>Dẫn lễ vu quy và lễ thành hôn tại nhà theo đúng nghi thức của từng gia đình. Mình thay mặt hai họ chào hỏi, điều phối trao nhận lễ vật và giữ cho buổi lễ đúng giờ lành.</p>
+          </div>
+          <div class="rail" tabindex="0" aria-label="Ảnh lễ vu quy và thành hôn">
+            <div><button class="shot" type="button"><img src="img/tg-2.jpg" alt="MC đứng cạnh phông Lễ Thành Hôn màu đỏ" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/tg-1.jpg" alt="MC dẫn lễ vu quy giữa hai họ ngồi quanh bàn" loading="lazy"></button></div>
+          </div>
+        </article>
+
+        <article class="svc">
+          <div class="svc-text">
+            <span class="svc-meta">Nghi thức · Lời thề nguyện</span>
+            <h3>MC lễ Vow</h3>
+            <p>Dẫn khoảnh khắc cô dâu chú rể trao nhau lời thề nguyện. Kịch bản viết riêng theo câu chuyện của hai bạn, lời dẫn đủ lắng để cả khách mời cùng xúc động.</p>
+          </div>
+          <div class="rail" tabindex="0" aria-label="Ảnh lễ thề nguyện">
+            <div><button class="shot" type="button"><img src="img/vow-1.jpg" alt="MC mặc vest trắng nơ đen trước cổng hoa" loading="lazy"></button></div>
+            <div><button class="shot" type="button"><img src="img/vow-2.jpg" alt="MC dẫn lễ thề nguyện ngoài trời bên bóng bay hồng" loading="lazy"></button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why" id="vi-sao">
+    <div class="wrap">
+      <div class="why-head">
+        <div class="eyebrow">Điểm mạnh</div>
+        <h2>Vì sao chọn mình</h2>
+        <p class="script">cho ngày trọng đại của bạn?</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card feature">
+          <h3>Xử lý mọi tình huống phát sinh</h3>
+          <p>Ngày cưới luôn có những chuyện không theo kịch bản. Mình nhạy bén và gần gũi để xử lý gọn những sự cố có thể xảy ra, ví dụ:</p>
+          <ul>
+            <li>Nhà trai đã chọn giờ đẹp để xuất phát, MC cần đẩy nhanh tiến độ.</li>
+            <li>Mời người thân lên trao quà nhưng có người đang bận chưa lên được.</li>
+            <li>Nghi thức hai bên gia đình chưa thống nhất với nhau.</li>
+          </ul>
+          <figure class="why-video">
+            <video src="video/rot-gao.mp4" poster="img/rotgao.jpg" controls playsinline preload="none" aria-label="Video tình huống nghi thức rót gạo nhưng gạo không chảy"></video>
+            <figcaption>Nghi thức rót gạo nhưng gạo không chảy ra</figcaption>
+          </figure>
+        </div>
+        <div class="why-card">
+          <h3>Giọng dẫn truyền cảm</h3>
+          <p>Giọng nói ấm áp, truyền cảm hứng và kết nối cảm xúc của mọi người trong khán phòng.</p>
+        </div>
+        <div class="why-card">
+          <h3>Kịch bản cá nhân hóa</h3>
+          <p>Mỗi câu chuyện tình yêu là duy nhất, nên kịch bản cũng được viết riêng cho hai bạn.</p>
+        </div>
+        <div class="why-card">
+          <h3>Làm chủ sân khấu</h3>
+          <p>Tự tin điều phối mọi tình huống và giữ nhịp chương trình từ đầu đến cuối.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="phan-hoi">
+    <div class="wrap">
+      <div class="fb-head">
+        <div class="eyebrow">Phản hồi</div>
+        <h2>Khách hàng nói gì</h2>
+        <p class="lead">Những lời nhắn thật từ các cặp đôi và gia đình sau ngày cưới.</p>
+      </div>
+      <div class="rail reviews" tabindex="0" aria-label="Ảnh chụp tin nhắn phản hồi của khách hàng">
+        <div><button class="shot" type="button"><img src="img/fb-1.jpg" alt="Tin nhắn khách cảm ơn MC xử lý tình huống tốt" loading="lazy"></button></div>
+        <div><button class="shot" type="button"><img src="img/fb-2.jpg" alt="Tin nhắn khách khen MC và nói gọi là hữu duyên" loading="lazy"></button></div>
+        <div><button class="shot" type="button"><img src="img/fb-3.jpg" alt="Tin nhắn khách gửi lời cảm ơn và hẹn giới thiệu bạn bè" loading="lazy"></button></div>
+        <div><button class="shot" type="button"><img src="img/fb-4.jpg" alt="Tin nhắn khách khen MC nhiệt tình" loading="lazy"></button></div>
+        <div><button class="shot" type="button"><img src="img/fb-5.jpg" alt="Tin nhắn khách khen MC năng động, nhiệt tình" loading="lazy"></button></div>
+      </div>
+      <p class="fb-note">Chạm vào ảnh để xem rõ hơn.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="lien-he">
+    <div class="wrap">
+      <div class="contact-card">
+        <img src="img/thanks.jpg" alt="MC Tuấn Minh trên sân khấu cưới ngoài trời phủ hoa trắng" loading="lazy">
+        <div class="contact-body">
+          <div class="thanks">Thank you</div>
+          <p class="lead">Cảm ơn bạn đã ghé xem. Nhắn mình ngày cưới và địa điểm, mình sẽ báo lịch trống trong ngày.</p>
+          <div class="phone">
+            <output id="phone-num">0973 110 493</output>
+            <button class="btn ghost btn-sm" type="button" id="copy-phone">Sao chép số</button>
+          </div>
+          <a class="btn" href="https://zalo.me/0973110493" target="_blank" rel="noopener">Nhắn Zalo cho Tuấn Minh</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 MC Tuấn Minh · Dẫn chương trình tiệc cưới</div>
+</footer>
+
+<a class="float" href="https://zalo.me/0973110493" target="_blank" rel="noopener" aria-label="Nhắn Zalo cho MC Tuấn Minh">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>
+  Zalo
+</a>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
+  <img id="lb-img" alt="">
+  <button type="button" id="lb-close" aria-label="Đóng">×</button>
+</div>
+
+<script>
+(() => {
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let opener = null;
+  const close = () => { lb.hidden = true; lbImg.src = ''; opener && opener.focus(); };
+  document.querySelectorAll('button.shot').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.querySelector('img');
+      opener = btn;
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.hidden = false;
+      document.getElementById('lb-close').focus();
+    });
+  });
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  document.getElementById('lb-close').addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lb.hidden) close(); });
+
+  const copyBtn = document.getElementById('copy-phone');
+  copyBtn.addEventListener('click', () => {
+    const done = () => { copyBtn.textContent = 'Đã sao chép'; setTimeout(() => copyBtn.textContent = 'Sao chép số', 2000); };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(document.getElementById('phone-num'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'Đã chọn số, bấm Ctrl+C';
+    };
+    try { navigator.clipboard.writeText('0973110493').then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
