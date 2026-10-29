@@ -135,7 +135,7 @@ p { margin: 0; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
 .hero-actions .btn.ghost { color: #fff; border-color: rgba(255, 255, 255, 0.7); }
 .hero-actions .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); }
-.hero-copy { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+.hero-copy { padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px)); }
 .hero-actions { gap: 10px; flex-wrap: nowrap; }
 .hero-actions .btn { padding-inline: 18px; }
 /* Short screens: drop the blurb so the overlay stays below the face. */
@@ -211,24 +211,44 @@ p { margin: 0; }
 .phone { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .phone output { font-family: var(--f-display); font-size: 1.6rem; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; user-select: all; }
 
-footer { padding-block: 28px 110px; text-align: center; font-size: 0.82rem; color: var(--muted); }
+footer { padding-block: 28px 120px; text-align: center; font-size: 0.82rem; color: var(--muted); }
 
-/* Floating Zalo */
-.float {
-  position: fixed; z-index: 25;
-  right: calc(16px + env(safe-area-inset-right, 0px));
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent); color: var(--accent-ink); text-decoration: none;
-  font-weight: 600; font-size: 0.92rem; padding: 12px 20px 12px 14px; border-radius: 999px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+/* Dock: bottom nav. The active item gets a clear glass drop: backdrop-filter shows (and saturates) whatever page content sits behind it. */
+.dock {
+  --n: 5; --i: 0; --h: 62px;
+  position: fixed; z-index: 25; left: 10px; right: 10px; margin-inline: auto; max-width: calc(var(--col) - 20px);
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px)); height: var(--h);
 }
-.float svg { width: 22px; height: 22px; }
-.float::before {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--accent);
-  animation: ping 2.4s ease-out infinite;
+.dock-bar { position: absolute; inset: 0; border-radius: 22px; background: var(--band); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28); }
+.drop {
+  position: absolute; z-index: 1; top: -28px; left: calc((var(--i) + 0.5) * 100% / var(--n));
+  width: 56px; height: 56px; border-radius: 50%; translate: -50% 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.85) 0 5%, rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle at 68% 82%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 40%),
+    rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(1.5px) saturate(2) brightness(1.08) contrast(1.1);
+  backdrop-filter: blur(1.5px) saturate(2) brightness(1.08) contrast(1.1);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    inset 0 -8px 14px rgba(255, 255, 255, 0.25),
+    inset 0 6px 10px rgba(0, 0, 0, 0.12),
+    0 10px 20px rgba(0, 0, 0, 0.22);
+  transition: left .55s cubic-bezier(.5, 1.5, .4, 1), translate .4s ease, scale .4s ease, opacity .3s;
 }
-@keyframes ping { from { transform: scale(1); opacity: .7; } to { transform: scale(1.35); opacity: 0; } }
+.drop.wobble { animation: wobble .6s ease; }
+@keyframes wobble { 30% { scale: 1.28 0.8; } 60% { scale: 0.92 1.1; } 100% { scale: 1; } }
+.dock.idle .drop { translate: -50% 34px; scale: 0.2; opacity: 0; }
+.dock-links { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(var(--n), 1fr); height: 100%; margin: 0; padding: 0; list-style: none; }
+.dock a {
+  display: grid; justify-items: center; align-content: center; gap: 3px; height: 100%;
+  color: var(--band-muted); text-decoration: none; font-size: 0.66rem; font-weight: 500; letter-spacing: 0.02em;
+  -webkit-tap-highlight-color: transparent;
+}
+.dock svg { width: 22px; height: 22px; transition: transform .4s cubic-bezier(.5, 1.6, .4, 1), color .3s; }
+.dock a[aria-current="true"] { color: var(--band-ink); }
+.dock a[aria-current="true"] svg { transform: translateY(-22px); color: #fff; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6)); }
+.dock a:focus-visible { outline-offset: -4px; }
 
 /* Lightbox */
 .lb { position: fixed; inset: 0; z-index: 40; background: rgba(15, 11, 10, 0.92); display: grid; place-items: center; padding: 24px; }
@@ -246,12 +266,12 @@ footer { padding-block: 28px 110px; text-align: center; font-size: 0.82rem; colo
   .hero-copy h1 { font-size: 2.7rem; }
   .stat b { font-size: 2.1rem; }
   .thanks { font-size: 3.3rem; }
-  .float { right: calc(50vw - var(--col) / 2 + 16px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .float::before { animation: none; }
+  .drop, .dock svg { transition: none; }
+  .drop.wobble { animation: none; }
   .hero-copy .wl, .hero-copy .wr, .hero-copy .rise { animation: none; }
   .btn { transition: none; }
 }
@@ -448,10 +468,17 @@ footer { padding-block: 28px 110px; text-align: center; font-size: 0.82rem; colo
   <div class="wrap">© 2026 MC Tuấn Minh · Dẫn chương trình tiệc cưới</div>
 </footer>
 
-<a class="float" href="https://zalo.me/0973110493" target="_blank" rel="noopener" aria-label="Nhắn Zalo cho MC Tuấn Minh">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg>
-  Zalo
-</a>
+<nav class="dock idle" aria-label="Điều hướng nhanh">
+  <span class="dock-bar" aria-hidden="true"></span>
+  <span class="drop" aria-hidden="true"></span>
+  <ul class="dock-links">
+    <li><a href="#gioi-thieu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Về mình</span></a></li>
+    <li><a href="#dich-vu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg><span>Dịch vụ</span></a></li>
+    <li><a href="#vi-sao"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span>Điểm mạnh</span></a></li>
+    <li><a href="#phan-hoi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/></svg><span>Phản hồi</span></a></li>
+    <li><a href="#lien-he"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span>Liên hệ</span></a></li>
+  </ul>
+</nav>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Xem ảnh">
   <img id="lb-img" alt="">
@@ -487,5 +514,32 @@ footer { padding-block: 28px 110px; text-align: center; font-size: 0.82rem; colo
     };
     try { navigator.clipboard.writeText('0973110493').then(done, fallback); } catch (e) { fallback(); }
   });
+  const dock = document.querySelector('.dock');
+  const dockLinks = [...dock.querySelectorAll('a')];
+  const targets = dockLinks.map(a => document.querySelector(a.getAttribute('href')));
+  const drop = dock.querySelector('.drop');
+  let current = -1;
+  const setActive = i => {
+    if (i === current) return;
+    current = i;
+    dock.classList.toggle('idle', i < 0);
+    if (i >= 0) {
+      dock.style.setProperty('--i', i);
+      drop.classList.remove('wobble'); void drop.offsetWidth; drop.classList.add('wobble');
+    }
+    dockLinks.forEach((a, k) => k === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  };
+  let ticking = false;
+  const spy = () => {
+    ticking = false;
+    const mid = innerHeight / 2;
+    let active = -1;
+    targets.forEach((el, k) => { if (el.getBoundingClientRect().top <= mid) active = k; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) active = targets.length - 1;
+    setActive(active);
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(spy); } }, { passive: true });
+  dockLinks.forEach((a, k) => a.addEventListener('click', () => setActive(k)));
+  spy();
 })();
 </script>
